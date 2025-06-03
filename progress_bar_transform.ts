@@ -117,14 +117,28 @@ function determineLabelPosition(node: FigmaDocumentNode): string {
  * Generates a unique ID for the component
  */
 function generateId(): string {
-  return `b_${Math.random().toString(16).substr(2, 7)}`;
+  return `b_${Math.random().toString(16).slice(2, 7)}`;
 }
 
 /**
  * get alias for thickness of bar
  */
 function getAliasForBarThickness(thickness: number): string {
-  return "md"; // switch
+  /**
+   * 4px xs
+   * 6px sm
+   * 8px md
+   * 12px lg
+   * 16px xl
+   */
+  switch(thickness){
+    case 4 : return 'xs';
+    case 6 : return 'sm';
+    case 8 : return 'md';
+    case 12 : return 'lg';
+    case 16 : return 'xl';
+    default : return 'md'; // Figma mostly has 8px
+  }
 }
 
 /**
